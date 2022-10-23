@@ -8,15 +8,30 @@
 </head>
 <body>
     <div id="root"></div>
-    
+    <div id="root-react"></div>
+    <!-- vanilla js -->
     <script>
         // select element from HTML DOM
         const root = document.querySelector('#root');
         // create element
         const element = document.createElement('h1');
         element.textContent = 'Hello from javascript';
+        element.className = 'heading-1'
         // render element to HTML DOM
         root.appendChild(element)
+    </script>
+    <!-- reactjs -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <script>
+        const root_react = document.querySelector('#root-react');
+        
+        const element_react = React.createElement('h1', {
+            children : 'Hello from REACT',
+            className : 'heading-1',
+        });
+        ReactDOM.render(element_react,root_react);
     </script>
 </body>
 </html>
