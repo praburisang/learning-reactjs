@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <div id="root"></div>
-    <div id="root-react"></div>
-    <div id="react-fragment"></div>
+<body>    
     <!-- vanilla js -->
+    <div id="root"></div>
     <script>
         // select element from HTML DOM
         const root = document.querySelector('#root');
@@ -24,7 +22,8 @@
     <!-- reactjs -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    
+    <div id="root-react"></div>
+    <div id="react-fragment"></div>
     <script>
         //creating ui using react
         const root_react = document.querySelector('#root-react');
@@ -48,5 +47,21 @@
         });
         ReactDOM.render(element_fragment, react_fragment);
     </script>
+    <!-- babel -->
+    <div id="babel"></div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const root_babel = document.querySelector('#babel')
+
+        const element_babel = (
+            <ul>
+            <li>apple</li>
+            <li>orange</li>
+            <li>grape</li>
+            </ul>
+        );
+        ReactDOM.render(element_babel, root_babel);
+    </script>
+    
 </body>
 </html>

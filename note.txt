@@ -1,0 +1,15 @@
+>basic react syntax
+React.createElement = create react element
+ReactDOM.render = render react element
+
+>NESTED ELEMENT = u can write element content/children in the 3rd parameter and so on
+example : const element = react.createElement{ul,null, react.createElement('li',null,'apple')}
+
+>introduce JSX & Babel
+JSX =   -html like syntax
+        -dont need to write in string or duble tick
+        -not a standard JS
+        -need a compiler
+babel = -javascript compiler
+        -transform nextgen JS to browser compatible JS
+        -transform non standard JS to standard JS
