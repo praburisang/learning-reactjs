@@ -1,4 +1,4 @@
-CHAPTER 1
+CHAPTER 1 - The Basics
     > basic react syntax
         React.createElement = create react element
         ReactDOM.render = render react element
@@ -26,3 +26,40 @@ CHAPTER 1
 
     > how react render to DOM tree?
         only update the element that change
+
+CHAPTER 2 - The Essentials
+    > install Essentials
+        -nodejs
+        -npm
+        -yarn
+        -initialize : yarn init -y
+
+    > setup local babel for precompile
+        - install babel package
+            ~ yarn add @babel/core @babel/cli @babel/preset-react
+                . @babel/core : core function / internal api babel
+                . @babel/cli : use for compile process
+                . @babel/preset-react : preset to transform react JS to standard JS
+            ~ add this code to package.json
+                "scripts": {
+                    "build" :"babel src --out-dir public"
+                }
+            ~ create babel config and insert preset that will be used(preset-react)
+                {
+                    "presets": [
+                        "@babel/preset-react"
+                    ]
+                }
+        - install http-server(lite-server) *to surf static file
+            ~ yarn add lite-server
+            ~ add this code to scripts in package.json
+        - add automatic build and start in package.json *for learning only 
+            ~ add -w to build 
+            ~ replace start script to serve script 
+            ~ add start script
+                yarn build & yarn start
+    
+    > basic style react element(inline)
+        - react cant read style = "..."
+        - we need to convert it to JS object using {{}}
+        
