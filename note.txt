@@ -1,15 +1,28 @@
->basic react syntax
-React.createElement = create react element
-ReactDOM.render = render react element
+CHAPTER 1
+    > basic react syntax
+        React.createElement = create react element
+        ReactDOM.render = render react element
 
->NESTED ELEMENT = u can write element content/children in the 3rd parameter and so on
-example : const element = react.createElement{ul,null, react.createElement('li',null,'apple')}
+    > NESTED ELEMENT = u can write element content/children in the 3rd parameter and so on
+        example : const element = react.createElement{ul,null, react.createElement('li',null,'apple')}
 
->introduce JSX & Babel
-JSX =   -html like syntax
-        -dont need to write in string or duble tick
-        -not a standard JS
-        -need a compiler
-babel = -javascript compiler
-        -transform nextgen JS to browser compatible JS
-        -transform non standard JS to standard JS
+    > introduce JSX & Babel
+        JSX =   -html like syntax
+                -dont need to write in string or duble tick
+                -not a standard JS
+                -need a compiler
+        babel = -javascript compiler
+                -transform nextgen JS to browser compatible JS
+                -transform non standard JS to standard JS
+                -for development purpose we can use babel standalone that compile the JS code in browser
+                -use pre compile if u want to use it in production
+
+    > how does babel work?
+        babel use various type of plugin to transform into standard JS
+        when using empty element dont forget to put subclosing(/)
+
+    > react component
+        JS function that return to react/jsx element using uppercase in first letter
+
+    > how react render to DOM tree?
+        only update the element that change
