@@ -1,3 +1,4 @@
+
 // select element from HTML DOM
 const root = document.querySelector('#root');
 // create element
@@ -86,3 +87,49 @@ function Counter(){
 }
 
 ReactDOM.render(<Counter />, root_state)
+
+//component lifecycle
+const root_lifecycle = document.querySelector('#lifecycle');
+function Lifecycle(){
+    const [klik, setKlik] = React.useState(false);
+    React.useEffect(function(){
+        console.log(document.getElementById('judul'))
+    })
+    return (
+        <>
+        <h1 id="judul">Halo ini judul</h1>
+        <button onClick={
+            function(){
+                setKlik(true)
+            }
+        }>
+            klik saya
+        </button>
+        </>
+    );
+};
+ReactDOM.render(<Lifecycle />, root_lifecycle);
+
+// conditional rendering
+const root_conditional = document.querySelector('#conditional-render');
+function Conditional(){
+    const [login, setLogin] = React.useState(false);
+    // if (login){
+    //     return (
+    //         <h1>kamu sudah login</h1>
+    //     )
+    // }
+    return(
+        <>
+        <p>{login ? <b>kamu sudah login</b> : <i>kamu belum login</i>}</p>
+        <button onClick={
+            function(){
+                setLogin(true)
+            }
+        }>
+            Login
+        </button>
+        </>
+    )
+}
+ReactDOM.render(<Conditional/>, root_conditional)

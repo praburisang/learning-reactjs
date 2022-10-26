@@ -68,3 +68,38 @@ function Counter() {
   }, "+"));
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(Counter, null), root_state);
+
+//component lifecycle
+const root_lifecycle = document.querySelector('#lifecycle');
+function Lifecycle() {
+  const [klik, setKlik] = React.useState(false);
+  React.useEffect(function () {
+    console.log(document.getElementById('judul'));
+  });
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", {
+    id: "judul"
+  }, "Halo ini judul"), /*#__PURE__*/React.createElement("button", {
+    onClick: function () {
+      setKlik(true);
+    }
+  }, "klik saya"));
+}
+;
+ReactDOM.render( /*#__PURE__*/React.createElement(Lifecycle, null), root_lifecycle);
+
+// conditional rendering
+const root_conditional = document.querySelector('#conditional-render');
+function Conditional() {
+  const [login, setLogin] = React.useState(false);
+  // if (login){
+  //     return (
+  //         <h1>kamu sudah login</h1>
+  //     )
+  // }
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, login ? /*#__PURE__*/React.createElement("b", null, "kamu sudah login") : /*#__PURE__*/React.createElement("i", null, "kamu belum login")), /*#__PURE__*/React.createElement("button", {
+    onClick: function () {
+      setLogin(true);
+    }
+  }, "Login"));
+}
+ReactDOM.render( /*#__PURE__*/React.createElement(Conditional, null), root_conditional);

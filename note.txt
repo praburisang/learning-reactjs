@@ -81,4 +81,13 @@ CHAPTER 2 - The Essentials
         - syntax : React.useState(value)
         - this syntax is an array of [value, dispatchAction()]
         - since state is an array we can use destructuring in variable name example [count, setState]
-        -
+    
+    > component lifecycle
+        - if we want to access element using standard JS in react it can only be access after code is rendered
+        - but if theres a delay theres a possibility that it'll return null
+        - it will be run again when element re render
+        - for watching a function wecan use useEffect
+        - if we only want to execute on the first render, we can use empty array [] in 2nd argument of useEffect
+    > conditional rendering
+        - when a condition is fulfilled itll render a component
+        - 
