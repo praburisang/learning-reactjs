@@ -47,6 +47,9 @@ function tick(){
             <h1>{ngegas(nama)}</h1>
             <Halo name='Prabuwono' />
             {new Date().toLocaleTimeString()}
+            <button onClick={function(){
+                alert(1);
+            }}>Click Me</button>
         </ul>
     );
     ReactDOM.render(element_babel, root_babel);
@@ -54,4 +57,32 @@ function tick(){
 tick();
 setInterval(function (){
     tick()
-}, 1000)
+}, 1000);
+
+//component and state 
+const root_state = document.querySelector('#state')
+function Counter(){
+    const [count, setState] = React.useState(0);
+    
+    return (
+        <>
+        <button onClick={
+            function(){
+                setState(count-1)
+            }
+        }>
+            -
+        </button>
+        <span>{count}</span>
+        <button onClick={
+            function(){
+                setState(count+1)
+            }
+        }>
+            +
+        </button>
+        </>
+    );
+}
+
+ReactDOM.render(<Counter />, root_state)

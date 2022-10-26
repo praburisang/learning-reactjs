@@ -40,7 +40,11 @@ function Halo(props) {
 function tick() {
   const element_babel = /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "apple"), /*#__PURE__*/React.createElement("li", null, "orange"), /*#__PURE__*/React.createElement("li", null, "grape"), /*#__PURE__*/React.createElement("h1", null, ngegas(nama)), /*#__PURE__*/React.createElement(Halo, {
     name: "Prabuwono"
-  }), new Date().toLocaleTimeString());
+  }), new Date().toLocaleTimeString(), /*#__PURE__*/React.createElement("button", {
+    onClick: function () {
+      alert(1);
+    }
+  }, "Click Me"));
   ReactDOM.render(element_babel, root_babel);
 }
 ;
@@ -48,3 +52,19 @@ tick();
 setInterval(function () {
   tick();
 }, 1000);
+
+//component and state 
+const root_state = document.querySelector('#state');
+function Counter() {
+  const [count, setState] = React.useState(0);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+    onClick: function () {
+      setState(count - 1);
+    }
+  }, "-"), /*#__PURE__*/React.createElement("span", null, count), /*#__PURE__*/React.createElement("button", {
+    onClick: function () {
+      setState(count + 1);
+    }
+  }, "+"));
+}
+ReactDOM.render( /*#__PURE__*/React.createElement(Counter, null), root_state);

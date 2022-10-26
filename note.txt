@@ -62,4 +62,23 @@ CHAPTER 2 - The Essentials
     > basic style react element(inline)
         - react cant read style = "..."
         - we need to convert it to JS object using {{}}
-        
+        - replace ; to , in inline style
+        - value need to be string using '..'
+        - if there's two word using - replace it using camelcase (backgroundColor)
+        - if using pixel no need to be string and remove px
+
+    > external styling in react
+        - just as the same as usual
+        - replace class to className 
+
+    > event handling
+        - use onClick instead of onclick
+        - use {...} instead of "..."
+        - dont use () if referencing a function *it'll call as the webpage is loaded
+        - if using a parameter, we can invoke it on another function / use .bind
+    
+    > component & state (state hooks)
+        - syntax : React.useState(value)
+        - this syntax is an array of [value, dispatchAction()]
+        - since state is an array we can use destructuring in variable name example [count, setState]
+        -
