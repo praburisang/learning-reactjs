@@ -116,3 +116,14 @@ CHAPTER 2 - The Essentials
         - key must be unique
 
     > Forms
+        - uncontrolled
+            ~ using vanilla js on its core
+            ~ default behaviour of form is to navigate to another page
+            ~ so if we want to get the value of a form it will disapear
+            ~ we can remove default behaviour using parameter.preventDefault
+            ~ wecan get value of a form using getElementbyId or useRef
+        - controlled
+            ~ using useState to get value of input
+            ~ using onChange on input field to listen value
+            ~ parameter.target.value on onChange
+            ~ value on input field set to first array of useState so it could only depend on state

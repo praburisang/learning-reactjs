@@ -165,3 +165,47 @@ function Listkey(){
     )
 };
 ReactDOM.render(<Listkey />, root_list);
+
+// uncontrolled form
+const root_uncontrolled = document.querySelector('#uncontrolled-form')
+function Uncontrolled(){
+    const namaRef = React.useRef(null);
+    function ketikaSubmit(event){
+        event.preventDefault();
+        const nama = namaRef.current.value
+        console.log('nama: ', nama);
+    }
+    return (
+        <form onSubmit={ketikaSubmit}>
+            <div>
+                <label>Nama :</label>
+                <input type="text" name="nama" ref={namaRef}/>
+            </div>
+            <button type="submit">Kirim</button>
+        </form>
+    )
+}
+ReactDOM.render(<Uncontrolled/>, root_uncontrolled)
+
+// controlled form
+const root_controlled = document.querySelector('#controlled-form')
+function Controlled(){
+    const [nama, setNama]= React.useState('Prabu');
+    function ketikaSubmit(event){
+        event.preventDefault();
+        
+        console.log('nama :', nama);
+    }
+    return (
+        <form onSubmit={ketikaSubmit}>
+            <div>
+                <label>Nama :</label>
+                <input type="text" name="nama" value={nama} onChange={function(event){
+                    setNama(event.target.value)
+                }}/>
+            </div>
+            <button type="submit">Kirim</button>
+        </form>
+    )
+}
+ReactDOM.render(<Controlled/>, root_controlled)

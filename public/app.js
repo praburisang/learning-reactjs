@@ -131,3 +131,47 @@ function Listkey() {
 }
 ;
 ReactDOM.render( /*#__PURE__*/React.createElement(Listkey, null), root_list);
+
+// uncontrolled form
+const root_uncontrolled = document.querySelector('#uncontrolled-form');
+function Uncontrolled() {
+  const namaRef = React.useRef(null);
+  function ketikaSubmit(event) {
+    event.preventDefault();
+    const nama = namaRef.current.value;
+    console.log('nama: ', nama);
+  }
+  return /*#__PURE__*/React.createElement("form", {
+    onSubmit: ketikaSubmit
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", null, "Nama :"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    name: "nama",
+    ref: namaRef
+  })), /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, "Kirim"));
+}
+ReactDOM.render( /*#__PURE__*/React.createElement(Uncontrolled, null), root_uncontrolled);
+
+// controlled form
+const root_controlled = document.querySelector('#controlled-form');
+function Controlled() {
+  const [nama, setNama] = React.useState('Prabu');
+  function ketikaSubmit(event) {
+    event.preventDefault();
+    console.log('nama :', nama);
+  }
+  return /*#__PURE__*/React.createElement("form", {
+    onSubmit: ketikaSubmit
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", null, "Nama :"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    name: "nama",
+    value: nama,
+    onChange: function (event) {
+      setNama(event.target.value);
+    }
+  })), /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, "Kirim"));
+}
+ReactDOM.render( /*#__PURE__*/React.createElement(Controlled, null), root_controlled);
