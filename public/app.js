@@ -96,10 +96,38 @@ function Conditional() {
   //         <h1>kamu sudah login</h1>
   //     )
   // }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, login ? /*#__PURE__*/React.createElement("b", null, "kamu sudah login") : /*#__PURE__*/React.createElement("i", null, "kamu belum login")), /*#__PURE__*/React.createElement("button", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, login == true && 'kamu sudah login'), /*#__PURE__*/React.createElement("button", {
     onClick: function () {
       setLogin(true);
     }
   }, "Login"));
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(Conditional, null), root_conditional);
+
+// DOM MANIPULATION
+const root_dom = document.querySelector('#dom-manipulation');
+function Dom() {
+  const manipulasiRef = React.useRef(null);
+  React.useEffect(function () {
+    setTimeout(function () {
+      manipulasiRef.current.textContent = 'DOM Manipulation';
+    }, 1000);
+  }, []);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", {
+    ref: manipulasiRef
+  }, "Manipulasi Dom"));
+}
+ReactDOM.render( /*#__PURE__*/React.createElement(Dom, null), root_dom);
+
+// list & Key
+const root_list = document.querySelector('#list-key');
+function Listkey() {
+  fruits = ['apple', 'orange', 'grape', 'melon'];
+  return /*#__PURE__*/React.createElement("ul", null, fruits.map(function (fruit) {
+    return /*#__PURE__*/React.createElement("li", {
+      key: fruit
+    }, fruit);
+  }));
+}
+;
+ReactDOM.render( /*#__PURE__*/React.createElement(Listkey, null), root_list);

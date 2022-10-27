@@ -121,7 +121,8 @@ function Conditional(){
     // }
     return(
         <>
-        <p>{login ? <b>kamu sudah login</b> : <i>kamu belum login</i>}</p>
+        <p>{login == true && 'kamu sudah login'}</p>
+        {/* <p>{login ? <b>kamu sudah login</b> : <i>kamu belum login</i>}</p> */}
         <button onClick={
             function(){
                 setLogin(true)
@@ -133,3 +134,34 @@ function Conditional(){
     )
 }
 ReactDOM.render(<Conditional/>, root_conditional)
+
+// DOM MANIPULATION
+const root_dom = document.querySelector('#dom-manipulation');
+function Dom(){
+    const manipulasiRef = React.useRef(null)
+    React.useEffect(function() {
+        setTimeout(function(){
+            manipulasiRef.current.textContent = 'DOM Manipulation'
+        },1000)
+    },[])
+    return (
+        <>
+        <h1 ref={manipulasiRef}>Manipulasi Dom</h1>
+        </>
+    )
+}
+ReactDOM.render(<Dom/>,root_dom)
+
+// list & Key
+const root_list = document.querySelector('#list-key');
+function Listkey(){
+    fruits = ['apple', 'orange', 'grape', 'melon'];
+    return (
+        <ul>
+            {fruits.map(function(fruit){
+                return <li key={fruit}>{fruit}</li>
+            })}
+        </ul>
+    )
+};
+ReactDOM.render(<Listkey />, root_list);

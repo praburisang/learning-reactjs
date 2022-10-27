@@ -88,6 +88,31 @@ CHAPTER 2 - The Essentials
         - it will be run again when element re render
         - for watching a function wecan use useEffect
         - if we only want to execute on the first render, we can use empty array [] in 2nd argument of useEffect
+    
     > conditional rendering
         - when a condition is fulfilled itll render a component
-        - 
+    
+    > DOM manipulation
+        - in react we can use useRef for DOM manipulation
+        - bind ref={variable name} in element that'll be manipulated
+    
+    > React hooks
+        - bringing react feature like state management in a class component into function component
+        - like useState()
+
+    > List & Keys
+        - we can use array to create a List
+        - using .map function. example :
+            fruits = [apple, orange];
+            return (
+                <ul>
+                    fruits.map(function(fruit){
+                        return <li>{fruit}</li>
+                    })
+                </ul>
+            )
+        - why not forEach? because forEach doesnt support return
+        - if not using key react will return an error
+        - key must be unique
+
+    > Forms
