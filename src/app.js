@@ -209,3 +209,31 @@ function Controlled(){
     )
 }
 ReactDOM.render(<Controlled/>, root_controlled)
+
+// data fetch
+const root_fetch = document.querySelector('#data-fetching');
+function Fetching(){
+    React.useEffect(function(){
+        // using then 
+        // const getData = fetch('https://api.spaceflightnewsapi.net/v3/blogs').then(function(response){
+        //     return response.json(); 
+        //     }
+        // ).then(function(response){
+        //     console.log(response);
+        // });
+        // console.log(getData);
+
+        // using async
+        async function getData(){
+            const request = await fetch('https://api.spaceflightnewsapi.net/v3/blogs');
+            const response = await request.json();
+            console.log(response);
+        }
+        getData();
+    },[])
+    return (
+        <h1>Data Fetching</h1>
+    )
+}
+ReactDOM.render(<Fetching/>, root_fetch)
+

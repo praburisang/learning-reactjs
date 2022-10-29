@@ -175,3 +175,28 @@ function Controlled() {
   }, "Kirim"));
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(Controlled, null), root_controlled);
+
+// data fetch
+const root_fetch = document.querySelector('#data-fetching');
+function Fetching() {
+  React.useEffect(function () {
+    // using then 
+    // const getData = fetch('https://api.spaceflightnewsapi.net/v3/blogs').then(function(response){
+    //     return response.json(); 
+    //     }
+    // ).then(function(response){
+    //     console.log(response);
+    // });
+    // console.log(getData);
+
+    // using async
+    async function getData() {
+      const request = await fetch('https://api.spaceflightnewsapi.net/v3/blogs');
+      const response = await request.json();
+      console.log(response);
+    }
+    getData();
+  }, []);
+  return /*#__PURE__*/React.createElement("h1", null, "Data Fetching");
+}
+ReactDOM.render( /*#__PURE__*/React.createElement(Fetching, null), root_fetch);
