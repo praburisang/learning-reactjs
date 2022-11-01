@@ -210,9 +210,11 @@ function Controlled(){
 }
 ReactDOM.render(<Controlled/>, root_controlled)
 
-// data fetch
+// data fetch and synchronized it to ui
 const root_fetch = document.querySelector('#data-fetching');
 function Fetching(){
+    const [news, setNews] = React.useState([])
+    const [loading, setLoading] = React.useState(true)
     React.useEffect(function(){
         // using then 
         // const getData = fetch('https://api.spaceflightnewsapi.net/v3/blogs').then(function(response){
@@ -228,12 +230,64 @@ function Fetching(){
             const request = await fetch('https://api.spaceflightnewsapi.net/v3/blogs');
             const response = await request.json();
             console.log(response);
+
+            setNews(response);
+            setLoading(false);
         }
         getData();
     },[])
     return (
-        <h1>Data Fetching</h1>
+        <>
+            <h1>Data Fetching</h1>
+            {loading ? 
+                <h2>Data is loading ...</h2> :
+                <ul>
+                {news.map(function(item){
+                    return <li key={item.id}>{item.title}</li>
+                })}
+            </ul>
+            }
+            
+        </>
+
     )
 }
 ReactDOM.render(<Fetching/>, root_fetch)
 
+// simple to-do-list
+const root_tdl = document.querySelector('#to-do-list');
+
+function Tdl() {
+    const [activity, setActivity] = React.useState('');
+    const [todos, setTodos] = React.useState([]);
+
+    function addTodoHandler(event){
+        event.preventDefault();
+
+        setTodos([... todos, activity]);
+        setActivity('');
+    }
+
+    return (
+        <>
+        <h1>Simple To Do List</h1>
+        <form onSubmit={addTodoHandler}>
+            <input 
+            type="text" 
+            value = {activity}
+            placeholder ="Activity Name"
+            onChange={function(event){
+                setActivity(event.target.value)
+            }}
+            />
+            <button type="submit">Submit</button>
+        </form>
+        <ul>
+            {todos.map(function(todo){
+                return <li key={todo}>{todo}</li>
+            })}
+        </ul>
+        </>
+    )
+}
+ReactDOM.render(<Tdl/>, root_tdl)

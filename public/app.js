@@ -176,9 +176,11 @@ function Controlled() {
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(Controlled, null), root_controlled);
 
-// data fetch
+// data fetch and synchronized it to ui
 const root_fetch = document.querySelector('#data-fetching');
 function Fetching() {
+  const [news, setNews] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
   React.useEffect(function () {
     // using then 
     // const getData = fetch('https://api.spaceflightnewsapi.net/v3/blogs').then(function(response){
@@ -194,9 +196,44 @@ function Fetching() {
       const request = await fetch('https://api.spaceflightnewsapi.net/v3/blogs');
       const response = await request.json();
       console.log(response);
+      setNews(response);
+      setLoading(false);
     }
     getData();
   }, []);
-  return /*#__PURE__*/React.createElement("h1", null, "Data Fetching");
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Data Fetching"), loading ? /*#__PURE__*/React.createElement("h2", null, "Data is loading ...") : /*#__PURE__*/React.createElement("ul", null, news.map(function (item) {
+    return /*#__PURE__*/React.createElement("li", {
+      key: item.id
+    }, item.title);
+  })));
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(Fetching, null), root_fetch);
+
+// simple to-do-list
+const root_tdl = document.querySelector('#to-do-list');
+function Tdl() {
+  const [activity, setActivity] = React.useState('');
+  const [todos, setTodos] = React.useState([]);
+  function addTodoHandler(event) {
+    event.preventDefault();
+    setTodos([...todos, activity]);
+    setActivity('');
+  }
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Simple To Do List"), /*#__PURE__*/React.createElement("form", {
+    onSubmit: addTodoHandler
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    value: activity,
+    placeholder: "Activity Name",
+    onChange: function (event) {
+      setActivity(event.target.value);
+    }
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, "Submit")), /*#__PURE__*/React.createElement("ul", null, todos.map(function (todo) {
+    return /*#__PURE__*/React.createElement("li", {
+      key: todo
+    }, todo);
+  })));
+}
+ReactDOM.render( /*#__PURE__*/React.createElement(Tdl, null), root_tdl);

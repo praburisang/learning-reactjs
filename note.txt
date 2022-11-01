@@ -128,10 +128,16 @@ CHAPTER 2 - The Essentials
             ~ parameter.target.value on onChange
             ~ value on input field set to first array of useState so it could only depend on state
 
-    >Data Fetching
+    > Data Fetching & synchronized to UI
         - getting data from server to show in the browser
         - we can use useEffect to get data from server
         - so it can be render on first whe website is open
         - use fetch to do http request
         - if browser response is promise, it means data is being process in the background and it will execute the next line of code(async)
         - use .then after fetch to show data after done processing
+
+    > To-Do-List app
+        - we can use 2 useState in a single function
+        - we can use the spread operator (...) to add new value in array, so the previous value doesnt get remove
+
+    
