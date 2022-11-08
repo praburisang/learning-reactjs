@@ -213,13 +213,86 @@ ReactDOM.render( /*#__PURE__*/React.createElement(Fetching, null), root_fetch);
 const root_tdl = document.querySelector('#to-do-list');
 function Tdl() {
   const [activity, setActivity] = React.useState('');
+  const [edit, setEdit] = React.useState({});
   const [todos, setTodos] = React.useState([]);
+  const [message, setMessage] = React.useState('');
+  // add list
   function addTodoHandler(event) {
     event.preventDefault();
-    setTodos([...todos, activity]);
+
+    // data validation
+    if (!activity) {
+      return setMessage('jangan kosong');
+    }
+    setMessage('');
+    // edit
+    if (edit.id) {
+      const updateTodo = {
+        ...edit,
+        activity,
+        check: false
+      };
+      const todoIndex = todos.findIndex(function (todo) {
+        return todo.id == edit.id;
+      });
+      const cloneTodos = [...todos];
+      cloneTodos[todoIndex] = updateTodo;
+      setTodos(cloneTodos);
+      setActivity('');
+      return cancelEditTodoHandler();
+    }
+    setTodos([...todos, {
+      id: getId(),
+      activity,
+      check: false
+    }]);
+    setMessage('');
     setActivity('');
   }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Simple To Do List"), /*#__PURE__*/React.createElement("form", {
+  // add id key
+  function getId() {
+    return Date.now();
+  }
+  //  remove list
+  function removeTodoHandler(todoId) {
+    const filteredTodos = todos.filter(function (todo) {
+      return todo.id != todoId;
+    });
+    setTodos(filteredTodos);
+    if (edit.id) {
+      cancelEditTodoHandler();
+    }
+    ;
+  }
+  // edit list
+  function editTodoHandler(todo) {
+    setActivity(todo.activity);
+    setEdit(todo);
+  }
+  // cancel edit
+  function cancelEditTodoHandler() {
+    console.log('cancel edit');
+    setEdit({});
+    setActivity('');
+  }
+  // checkbox
+  function checkTodoHandler(todo) {
+    const updateTodo = {
+      ...todo,
+      check: todo.check ? false : true
+    };
+    const todoIndex = todos.findIndex(function (currentTodo) {
+      return currentTodo.id == todo.id;
+    });
+    const cloneTodos = [...todos];
+    cloneTodos[todoIndex] = updateTodo;
+    setTodos(cloneTodos);
+  }
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Simple To Do List"), message && /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: 'red'
+    }
+  }, " ", message), /*#__PURE__*/React.createElement("form", {
     onSubmit: addTodoHandler
   }, /*#__PURE__*/React.createElement("input", {
     type: "text",
@@ -230,10 +303,20 @@ function Tdl() {
     }
   }), /*#__PURE__*/React.createElement("button", {
     type: "submit"
-  }, "Submit")), /*#__PURE__*/React.createElement("ul", null, todos.map(function (todo) {
+  }, edit.id ? 'save' : 'add'), edit.id && /*#__PURE__*/React.createElement("button", {
+    onClick: cancelEditTodoHandler
+  }, "cancel")), todos.length > 0 ? /*#__PURE__*/React.createElement("ul", null, todos.map(function (todo) {
     return /*#__PURE__*/React.createElement("li", {
-      key: todo
-    }, todo);
-  })));
+      key: todo.id
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "checkbox",
+      checked: todo.check,
+      onChange: checkTodoHandler.bind(this, todo)
+    }), todo.activity, "(", todo.check ? 'done' : 'not done', ")", /*#__PURE__*/React.createElement("button", {
+      onClick: editTodoHandler.bind(this, todo)
+    }, "edit"), /*#__PURE__*/React.createElement("button", {
+      onClick: removeTodoHandler.bind(this, todo.id)
+    }, "delete"));
+  })) : 'no activity');
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(Tdl, null), root_tdl);

@@ -140,4 +140,23 @@ CHAPTER 2 - The Essentials
         - we can use 2 useState in a single function
         - we can use the spread operator (...) to add new value in array, so the previous value doesnt get remove
 
-    
+    > To-Do-List pt2 (delete function)
+        - first we need a unique id for each value
+        - we can use date.now() to get a unique id
+        - we can use bind to get todo id
+        - removing list
+            ~ we can use .filter to produce a new array with filtered element
+        - edit list
+            ~ we can add a new function to capture which item id to edit
+            ~ add conditional rendering on addTodohandler function
+            ~ we need to capture item index using findIndex
+            ~ we should clone the original array to an updated one
+        - cancel edit  
+            ~ empty setEdit and setActivity
+            ~ invoke cancel function to other necessary function
+        - data validation
+            ~ use state to add a message
+            ~ invoke to necessary function so itll disapear once its filled
+        - add checklist
+            ~ using input type checkbox
+            ~ same principle as edit list
